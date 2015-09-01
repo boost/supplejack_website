@@ -17,16 +17,18 @@ gem 'will_paginate'
 gem 'jquery-rails'
 gem 'activeresource'
 gem 'devise'
+gem 'haml', '~> 4.0.6'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.3'
   gem 'coffee-rails', '~> 4.0.0'
   gem 'uglifier', '>= 1.0.3'
-  gem 'compass-rails'
-  gem 'zurb-foundation', '~> 4.0.0'
+  gem 'foundation-rails', '~> 5.4.5.0'
+  gem 'font-awesome-rails', '~> 4.3.0.0'
 end
 
 group :development do
+  gem "erb2haml"
   gem 'thin'
   gem 'quiet_assets'
   gem 'binding_of_caller'

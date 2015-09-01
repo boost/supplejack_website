@@ -26,3 +26,7 @@
 //= require jquery.infinitescroll
 //= require main
 //= require records.js
+//= require foundation
+$(function() {
+  $(document).foundation();
+});
