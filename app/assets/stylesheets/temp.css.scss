@@ -1,0 +1,271 @@
+// Place all the styles related to the temp controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bgGray: #eee;
+$accent: #e50;
+$accentGo: #090;
+$toolGray: darken($bgGray, 30%);
+$hilite: #ffa;
+
+$mainFont: 'Raleway', 'Avenir Next';
+$alternateFont: 'Rokkitt', 'ArcherPro';
+
+.top-bar-section .search-button {
+	display: none;
+}
+
+
+.story {
+	
+	font-family: $mainFont;	
+
+	a {
+		color: $accent;
+		text-decoration: none;
+		border-bottom: 1px dotted $accent;
+	}
+	
+	.header {
+		padding: 2em;
+	}
+
+	h1 {
+		font-weight: 800;
+		text-align: center;
+		font-size: 2rem;
+	}
+
+	h2 {
+		font-weight: 800;
+		text-align: center;
+		font-size: 1.6rem;
+		padding: 2rem 0;
+	}
+
+	h3 {
+		font-weight: 300;
+		text-align: center;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+	}
+
+	section {
+		margin: 1rem 0;
+		cite {
+			font-family: $alternateFont;
+			font-style: normal;
+			color: $toolGray;
+			line-height: 1.3;
+			h6 {
+				color: $toolGray;
+				font-family: 'Rokkitt', 'ArcherPro';
+				font-weight: 800;
+				margin: 0;
+			}
+		}
+		aside.edit-tools {
+			display: block;
+			color: $toolGray;
+			font-family: 'Rokkitt', 'ArcherPro';
+			text-align: left;
+			opacity: 0;
+		}
+	}
+
+	section:hover {
+		
+		aside.edit-tools {
+			opacity: 1.0;
+		}
+	}
+
+	.table-of-contents {
+		margin-bottom: 2rem;
+		h4 {
+			text-align: center;
+		}
+		ol, li {
+			padding: 0;
+			margin: 0;
+			list-style-type: none;
+			text-align: center;
+		}
+	}
+
+	.image-panel {
+		img {
+			width: 100%;
+			max-width: 100%;
+			border: 1px solid $toolGray;
+		}
+		&.full-width {
+			.image-pad {
+				max-width: 100%;
+				max-height: 20rem;
+				overflow: hidden;
+				border-top: 1px solid $toolGray;
+				border-bottom: 1px solid $toolGray;
+			}
+			width: 100%;
+			margin: 3rem 0;
+			img {
+				display: inline-block;
+				margin-top: -10rem;
+				border: 0px;
+			}
+			cite {
+				width: 100%;
+				display: block;
+				text-align: center;
+				margin: 0.5rem 0 1rem;
+				h6 {
+					display: inline-block;
+					margin: 0 1rem 0 0;
+				}
+			}
+		}
+	}
+
+	.image-gallery {
+		.gallery-item {
+			margin: 0 0 1rem 0;
+			img {
+				border: 1px solid $toolGray;
+			}
+		}
+	}
+
+	.narrative-panel {
+		aside.edit-tools {
+			margin-top: 2rem;
+		}
+	}
+
+	.add-panel {
+		width: 100%;
+		padding: 2rem 0; 
+		h3.add-message {
+			color: $toolGray;
+			&:hover {
+				color: $accentGo;
+			}
+		}
+		.add-icon {
+			transition: 0.6s ease-in-out;
+			color: $toolGray;
+			display: block;
+			font-weight: 300;
+			text-align: center;
+			margin: 1rem auto;
+			border: 3px solid $toolGray;
+			height: 4rem;
+			width: 4rem;
+			border-radius: 2.1rem;
+			font-size: 6rem;
+			overflow: hidden;
+			line-height: 3.5rem;
+			&:hover {
+				color: $accentGo;
+				border: 3px solid $accentGo;
+				background: $hilite;
+			}
+		}
+		.add-panel-inset {
+			display: none;
+			padding: 2rem 0;
+			background: #eee; /* Old browsers */
+			background: -moz-linear-gradient(top, #999 0%, #eee 16%, #eee 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ddd), color-stop(16%,#eee), color-stop(100%,#eee)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #999 0%,#eee 16%,#eee 100%);
+			background: -o-linear-gradient(top, #999 0%, #eee 16%,#eee 100%);
+			background: -ms-linear-gradient(top, #999 0%, #eee 16%,#eee 100%);
+			background: linear-gradient(to bottom, #999 0%, #eee 16%,#eee 100%);
+			border-bottom: 1px solid $toolGray;
+			.item-adder {
+				text-align: center;
+				.adder-icon {
+					display: block;
+					height: 4rem;
+					width: 4rem;
+					border-radius: 1rem;
+					border: 3px solid darken($toolGray, 10%);
+					margin: 0 auto;
+					background: white;
+				}
+			}
+		}
+	}
+	.add-panel-active {
+		.add-icon{
+			transform: rotate(45deg);
+		}
+	}
+
+}
+
+.community {
+	
+	img {
+		border-radius: 1rem;
+	}
+
+	h2 {
+		font-size: 2.5rem;
+		margin: 2rem 0;
+		padding: 0;
+		text-align: center;
+	}
+
+	.community-header {
+		margin: 2rem 0;
+		padding: 1rem 2rem;
+		position: relative;
+		background: rgba(0,0,0,0.6);
+		border-radius: 1rem;
+		h1 {
+			font-size: 3rem;
+			color: white;
+			font-weight: 800;
+			margin: 0;
+			line-height: 3.2rem;
+		}
+		h1::before {
+			content: 'Community';
+			text-transform: uppercase;
+			font-size: 0.8rem;
+			font-weight: 300;
+			display: block;
+		}
+		h2 {
+			font-size: 2rem;
+			line-height: 2.2rem;
+			color: white;
+			margin: 0 0 1em;
+			text-align: left;
+		}
+	}
+
+	.community-header::after {
+		content: "";
+		background: url('/assets/temp-bg.png');
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		z-index: -1;
+		background-size: cover;
+		border-radius: 1rem;
+	}
+
+	.stories {
+		margin: 2rem 0;
+		.story {
+			h4, p {
+				text-align: center;
+			}
+		}
+	}
+
+}

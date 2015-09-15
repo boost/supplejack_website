@@ -26,6 +26,8 @@
 //= require jquery.infinitescroll
 //= require main
 //= require records.js
+//= require temp.js
+//= require medium-editor.js
 //= require foundation
 $(function() {
   $(document).foundation();

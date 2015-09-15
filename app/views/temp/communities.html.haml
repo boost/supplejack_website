@@ -1,0 +1,25 @@
+.community
+
+	.community-header
+
+		%h1 DigitalNZ Communities
+
+	%h2 Communites of place
+
+	- 3.times do 
+		.row.stories
+			- 4.times do 
+				.medium-3.columns.story
+					= link_to image_tag('temp-bg.png'), '/temp/community'
+					%h4= link_to "Kete #{FFaker::Address.city}", '/temp/story'
+					%p= FFaker::BaconIpsum.phrase
+
+	%h2 Communities of interest
+
+	- 3.times do 
+		.row.stories
+			- 4.times do 
+				.medium-3.columns.story
+					= link_to image_tag('temp-bg.png'), '/temp/community'
+					%h4= link_to "#{FFaker::Education.major}", '/temp/story'
+					%p= FFaker::BaconIpsum.phrase

@@ -1,0 +1,26 @@
+
+
+
+body {
+	font-family: 'Raleway';
+}
+
+.top-bar .name h1 a {
+	font-weight: 800 !important;
+}
+
+
+.container {
+	margin: 0 auto;
+	width: 90%;
+	max-width: 60rem;
+}
+
+footer {
+	padding: 2em 0 30em;
+	background: #444;
+	color: white;
+	a {
+		color: white;
+	}
+}

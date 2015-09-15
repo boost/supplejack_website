@@ -51,6 +51,7 @@ group :test, :development do
   gem 'oily_png'
   gem 'minitest'
   gem 'simplecov'
+  gem 'ffaker',   '~> 2.1.0'
 end
 
 group :test do

@@ -20,4 +20,10 @@ Demo::Application.routes.draw do
   get '/become_a_partner', to: 'static_pages#become_a_partner'
   get '/terms', to: 'static_pages#terms'
   get '/base_template', to: 'static_pages#base_template'
+
+  # FIXME : Remove temp
+  get '/temp/story', to: 'temp#story'
+  get '/temp/community', to: 'temp#community'
+  get '/temp/communities', to: 'temp#communities'
+
 end

@@ -1,0 +1,32 @@
+.community
+
+	.community-header
+
+		%h1 Kete Whiktional
+		%h2 Dunedin, New Zealand
+
+	.community-content
+		.row.hero 
+			.medium-6.columns
+				.hero-image= link_to image_tag('temp-image.jpg'), '/temp/story'
+				%h3= link_to 'Featured story name', '/temp/story'
+				%p= FFaker::BaconIpsum.paragraph
+			.medium-6.columns
+				%h3 Community members
+				- 6.times do 
+					.member
+						.row
+							.medium-2.columns
+								= image_tag FFaker::Avatar.image
+							.medium-10.columns
+								= FFaker::Name.name
+
+		%h2 Our stories
+
+		- 3.times do 
+			.row.stories
+				- 4.times do 
+					.medium-3.columns.story
+						= link_to image_tag('temp-image.jpg'), '/temp/story'
+						%h4= link_to FFaker::Movie.title, '/temp/story'
+						%p= FFaker::BaconIpsum.phrase
