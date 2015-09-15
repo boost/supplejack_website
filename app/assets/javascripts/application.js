@@ -32,4 +32,3 @@
 $(function() {
   $(document).foundation();
 });
-
