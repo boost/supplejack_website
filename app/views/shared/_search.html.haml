@@ -8,5 +8,8 @@
   \# http://digitalnz.org/supplejack
 = form_tag records_path, :method => :get, class: 'search' do
   = hidden_field_tag("tab", params[:tab]) if params[:tab].present?
-  = text_field_tag :text, @search.text, class: 'search-input', placeholder: t('records.enter_search')
-  = submit_tag "Search", class: "search-button"
+  .row
+    .medium-10.columns
+      = text_field_tag :text, @search.text, class: 'search-input', placeholder: t('records.enter_search')
+    .medium-2.columns
+      = submit_tag "Search", class: "search-button button"

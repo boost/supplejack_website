@@ -14,6 +14,11 @@ Demo::Application.routes.draw do
   resources :user_sets, only: [:show, :create, :index] do
     resources :set_items, only: [:create]
   end
+  resources :stories, only: [:show, :create, :index] do
+    resources :set_items, only: [:create]
+  end
+
+
 
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'

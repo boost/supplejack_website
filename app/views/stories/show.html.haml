@@ -1,3 +1,5 @@
+- title @story.name.truncate(40)
+- content_for(:body_class) {'story'}
 
 %section.header
 	.container
@@ -6,11 +8,22 @@
 				%aside.edit-tools
 					Edit tools go here
 			.medium-8.columns
-				%h1= FFaker::Movie.title
+				= attribute(@story, :name, label: false, tag: 'h1')
 				%h3 
 					By 
-					= link_to FFaker::Name.name, '#'
+					= @story.user.try(:name)
 			.medium-2.columns
+
+/ = attribute(@user_set, :tags, { label_tag: 'span', label_class: 'field-label', trans_key: 'user_sets.date' })
+/     = attribute(@user_set, :description, label_tag: 'span', label_class: 'field-label', trans_key: 'user_sets.description', limit: 1000)
+
+%section.image-panel.full-width
+	.image-pad
+		= image_tag @records.last.large_thumbnail_url
+	%cite
+		%h6= @records.last.title
+		Citation information goes here
+
 
 %section.table-of-contents
 	.container
@@ -34,18 +47,12 @@
 				%aside.edit-tools
 					Edit tools go here
 			.medium-8.columns
-				= image_tag 'temp-image.jpg'
+				= image_tag @records.first.large_thumbnail_url
 			.medium-2.columns
 				%cite
-					%h6 Name of item
+					%h6= @records.first.title
 					Citation information goes here
 
-%section.image-panel.full-width
-	.image-pad
-		= image_tag 'temp-image.jpg'
-	%cite
-		%h6 Name of item
-		Citation information goes here
 
 
 %section.narrative-panel
@@ -64,12 +71,9 @@
 %section.image-gallery
 	.container
 		%ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
-			- 8.times do 
+			- @records.each do |record|
 				%li
-					= image_tag 'temp-image.jpg'
-					%cite
-						%h6= FFaker::AddressAU.neighborhood
-						= FFaker::Education.school
+					= link_to image_tag(record.image_url), record_path(record.id), 'data-tooltip' => true, 'aria-haspopup' => true, class: 'has-tip',  title: record.title
 
 
 
@@ -94,22 +98,22 @@
 	.add-panel-inset
 		.container
 			.row
-				.medium-3.columns.item-adder
-					.adder-icon.add-text
-						%i.fa.fa-font.fa-3x
-					text
-				.medium-3.columns.item-adder
-					%a.adder-icon.add-dnz{ data: {'reveal-id' => 'modal-add-image'} }
-						%i.fa.fa-camera-retro.fa-3x
-					your own image
-				.medium-3.columns.item-adder
+				.medium-3.small-6.columns.item-adder
 					%a.adder-icon.add-dnz{ data: {'reveal-id' => 'modal-add-to-dnz'} }
 						= image_tag 'logo-dnz-sprout.png'
 					item from digitalNZ
-				.medium-3.columns.item-adder
+				.medium-3.small-6.columns.item-adder
+					%a.adder-icon.add-image{ data: {'reveal-id' => 'modal-add-image'} }
+						%i.fa.fa-camera-retro.fa-3x
+					your own image
+				.medium-3.small-6.columns.item-adder
+					.adder-icon.add-text
+						%i.fa.fa-font.fa-3x
+					write something
+				.medium-3.small-6.columns.item-adder
 					.adder-icon.add-section
 						%i.fa.fa-paragraph.fa-3x
-					section
+					section break
 	%span.add-icon.toggle-add-panel +
 
 
@@ -117,15 +121,17 @@
 
 #modal-add-to-dnz.reveal-modal{ 'data-reveal' => true, 'aria-labelledby' => "modalTitle", 'aria-hidden' => true,  role: 'dialog'}
 	%h2 Search DigitalNZ for an item
-	[search box]
+	
+	= render "shared/search"
 
 	%h4 DigitalNZ suggests…
-	%ul.small-block-grid-4.medium-block-grid-6.large-block-grid-8
-		- 8.times do 
+	%ul.small-block-grid-4.medium-block-grid-6
+		- @suggestions.results[0..5].each do |record|
 			%li
-				= image_tag 'temp-image.jpg'
+				.block-image-wrapper= link_to image_tag(record.image_url), record_path(record.id)
 				%cite
-					%h6= FFaker::AddressAU.neighborhood
+					%h6= raw(record.title)
+					= record.display_content_partner
 	= link_to raw('&#215;'), '#', class: 'close-reveal-modal', 'aria-label' => 'Close'
 
 
@@ -133,5 +139,3 @@
 	%h2 Add your own image
 
 	= link_to raw('&#215;'), '#', class: 'close-reveal-modal', 'aria-label' => 'Close'
-
-

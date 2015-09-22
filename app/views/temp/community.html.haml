@@ -1,4 +1,4 @@
-.community
+.community.container
 
 	.community-header
 
@@ -14,12 +14,11 @@
 			.medium-6.columns
 				%h3 Community members
 				- 6.times do 
-					.member
-						.row
-							.medium-2.columns
-								= image_tag FFaker::Avatar.image
-							.medium-10.columns
-								= FFaker::Name.name
+					.row.member
+						.small-2.columns
+							= image_tag FFaker::Avatar.image
+						.small-10.columns
+							= FFaker::Name.name
 
 		%h2 Our stories
 

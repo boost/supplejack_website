@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def search(special_params=nil)
+    Rails.logger.debug(special_params)
     @search ||= Search.new(special_params || params[:search] || params)
   end
 

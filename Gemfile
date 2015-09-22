@@ -22,7 +22,7 @@ end
 gem 'rails', '~> 4.1.0'
 gem 'supplejack_client', git: 'https://github.com/DigitalNZ/supplejack_client.git'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 gem 'json'
 gem 'will_paginate'
 gem 'jquery-rails'
@@ -30,6 +30,8 @@ gem 'activeresource'
 gem 'devise'
 gem "codeclimate-test-reporter", group: :test, require: nil
 gem 'haml', '~> 4.0.6'
+
+gem 'highscore'
 
 group :assets do
   gem 'sass-rails',   '~> 4.0.3'

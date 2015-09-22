@@ -1,4 +1,4 @@
-.community
+.community.container
 
 	.community-header
 
@@ -11,7 +11,7 @@
 			- 4.times do 
 				.medium-3.columns.story
 					= link_to image_tag('temp-bg.png'), '/temp/community'
-					%h4= link_to "Kete #{FFaker::Address.city}", '/temp/story'
+					%h4= link_to "Kete #{FFaker::Address.city}", '/temp/community'
 					%p= FFaker::BaconIpsum.phrase
 
 	%h2 Communities of interest
@@ -21,5 +21,5 @@
 			- 4.times do 
 				.medium-3.columns.story
 					= link_to image_tag('temp-bg.png'), '/temp/community'
-					%h4= link_to "#{FFaker::Education.major}", '/temp/story'
+					%h4= link_to "#{FFaker::Education.major}", '/temp/community'
 					%p= FFaker::BaconIpsum.phrase
