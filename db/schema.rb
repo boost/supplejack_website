@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831224313) do
+ActiveRecord::Schema.define(version: 20150927095356) do
 
   create_table "api_keys", force: true do |t|
     t.integer  "user_id"
@@ -21,7 +21,32 @@ ActiveRecord::Schema.define(version: 20150831224313) do
     t.boolean  "terms",      default: true
   end
 
+  create_table "communities", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "shortname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "communities_stories", id: false, force: true do |t|
+    t.integer "community_id", null: false
+    t.integer "story_id",     null: false
+  end
+
+  create_table "communities_users", id: false, force: true do |t|
+    t.integer "community_id", null: false
+    t.integer "user_id",      null: false
+  end
+
   create_table "records", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stories", force: true do |t|
+    t.string   "user_set_id"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,121 +1,81 @@
 - title @story.name.truncate(40)
 - content_for(:body_class) {'story'}
 
-%section.header
-	.container
-		.row
-			.medium-2.columns
-				%aside.edit-tools
-					Edit tools go here
-			.medium-8.columns
-				= attribute(@story, :name, label: false, tag: 'h1')
-				%h3 
-					By 
-					= @story.user.try(:name)
-			.medium-2.columns
 
-/ = attribute(@user_set, :tags, { label_tag: 'span', label_class: 'field-label', trans_key: 'user_sets.date' })
-/     = attribute(@user_set, :description, label_tag: 'span', label_class: 'field-label', trans_key: 'user_sets.description', limit: 1000)
+.container
+	.story-header
+		= attribute(@story.user_set, :name, label: false, tag: 'h1')
+		%h3 
+			By 
+			= @story.user_set.user.try(:name)
 
-%section.image-panel.full-width
-	.image-pad
-		= image_tag @records.last.large_thumbnail_url
-	%cite
-		%h6= @records.last.title
-		Citation information goes here
+		- unless @story.communities.empty?
+			%h4 
+				This story belongs to 
+				- @story.communities.each do |community|
+					•
+					%span= link_to community, community
 
 
-%section.table-of-contents
-	.container
-		.row
-			.medium-4.columns
-				%aside.edit-tools
-					Edit tools go here
-			.medium-4.columns
-				%h4 Contents
-				%ol
-					%li= link_to "First section name", '#'
-					%li= link_to "Second section name", '#'
-					%li= link_to "Third section name", '#'
-			.medium-4.columns
+	%ul.tabs{ data: { tab: true } }
+		%li.tab-title.active
+			= link_to 'Story', '#story-panel'
+		%li.tab-title
+			= link_to 'Items in this set', '#items-panel'
+		%li.tab-title
+			= link_to 'Settings', '#settings-panel'
 
-
-%section.image-panel
-	.container
-		.row
-			.medium-2.columns
-				%aside.edit-tools
-					Edit tools go here
-			.medium-8.columns
-				= image_tag @records.first.large_thumbnail_url
-			.medium-2.columns
-				%cite
-					%h6= @records.first.title
-					Citation information goes here
-
-
-
-%section.narrative-panel
-	.container
-		.row
-			.medium-2.columns
-				%aside.edit-tools
-					Edit tools go here
-			.medium-8.columns
 	
-				%h2 Section Header
+	
 
-			.medium-2.columns
+	.tabs-content
+		#story-panel.content.active
+			.freeform{ data: { editable: true, name: 'main' } }
+				= @story.content_output
 				
 
-%section.image-gallery
-	.container
-		%ul.small-block-grid-2.medium-block-grid-3.large-block-grid-4
-			- @records.each do |record|
-				%li
-					= link_to image_tag(record.image_url), record_path(record.id), 'data-tooltip' => true, 'aria-haspopup' => true, class: 'has-tip',  title: record.title
+				/ = image_tag @records.first.large_thumbnail_url, class: 'full-width', 'data-ce-tag' => "static"
 
 
+			/ %section.add-panel 
+			/ 	%h3.add-message.toggle-add-panel Add to your story...			
+			/ 	.add-panel-inset
+			/ 		.container
+			/ 			.row
+			/ 				.medium-3.small-6.columns.item-adder
+			/ 					%a.adder-icon.add-dnz{ data: {'reveal-id' => 'modal-add-to-dnz'} }
+			/ 						= image_tag 'logo-dnz-sprout.png'
+			/ 					item from digitalNZ
+			/ 				.medium-3.small-6.columns.item-adder
+			/ 					%a.adder-icon.add-image{ data: {'reveal-id' => 'modal-add-image'} }
+			/ 						%i.fa.fa-camera-retro.fa-3x
+			/ 					your own image
+			/ 				.medium-3.small-6.columns.item-adder
+			/ 					.adder-icon.add-text
+			/ 						%i.fa.fa-font.fa-3x
+			/ 					write something
+			/ 				.medium-3.small-6.columns.item-adder
+			/ 					.adder-icon.add-section
+			/ 						%i.fa.fa-paragraph.fa-3x
+			/ 					section break
+			/ 	%span.add-icon.toggle-add-panel +
 
-%section.narrative-panel
-	.container
-		.row
-			.medium-2.columns
-				%aside.edit-tools
-					Edit tools go here
-			.medium-8.columns.editable
-	
-				%h2 Section Header
-	
-				%p=raw FFaker::BaconIpsum.paragraphs(4).join('</p><p>')
-			.medium-2.columns
-				x
+		#items-panel.content
+			%h2 Items in this set
+			%ul.medium-block-grid-3
+				- @records.each do |record|
+					%li= image_tag(record.image_url, data: { :'dnz-id' => record.id, :'ce-tag' => 'static' } )
 
+		#settings-panel.content
+			%h3 Communities
 
-
-%section.add-panel 
-	%h3.add-message.toggle-add-panel Add to your story...			
-	.add-panel-inset
-		.container
-			.row
-				.medium-3.small-6.columns.item-adder
-					%a.adder-icon.add-dnz{ data: {'reveal-id' => 'modal-add-to-dnz'} }
-						= image_tag 'logo-dnz-sprout.png'
-					item from digitalNZ
-				.medium-3.small-6.columns.item-adder
-					%a.adder-icon.add-image{ data: {'reveal-id' => 'modal-add-image'} }
-						%i.fa.fa-camera-retro.fa-3x
-					your own image
-				.medium-3.small-6.columns.item-adder
-					.adder-icon.add-text
-						%i.fa.fa-font.fa-3x
-					write something
-				.medium-3.small-6.columns.item-adder
-					.adder-icon.add-section
-						%i.fa.fa-paragraph.fa-3x
-					section break
-	%span.add-icon.toggle-add-panel +
-
+			%ul
+				- Community.all.each do |community|
+					%li
+						- if @story.communities.include? community
+							%strong= community
+						- else
+							= button_to community, add_community_to_story_path(@story, community.id)
 
 
 
@@ -126,7 +86,7 @@
 
 	%h4 DigitalNZ suggests…
 	%ul.small-block-grid-4.medium-block-grid-6
-		- @suggestions.results[0..5].each do |record|
+		- @story.suggested_images(6).each do |record|
 			%li
 				.block-image-wrapper= link_to image_tag(record.image_url), record_path(record.id)
 				%cite

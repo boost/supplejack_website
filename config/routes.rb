@@ -7,6 +7,7 @@
 # http://digitalnz.org/supplejack
 
 Demo::Application.routes.draw do
+  resources :communities
   devise_for :users, controllers: { registrations: 'registrations'}
 
   root to: 'records#home'
@@ -14,21 +15,16 @@ Demo::Application.routes.draw do
   resources :user_sets, only: [:show, :create, :index] do
     resources :set_items, only: [:create]
   end
-  resources :stories, only: [:show, :create, :index] do
-    resources :set_items, only: [:create]
+  resources :stories do
+    member do
+      post 'communities/:community_id', :to => "stories#add_community", :as => :add_community_to
+    end
   end
-
-
 
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
   get '/become_a_partner', to: 'static_pages#become_a_partner'
   get '/terms', to: 'static_pages#terms'
   get '/base_template', to: 'static_pages#base_template'
-
-  # FIXME : Remove temp
-  get '/temp/story', to: 'temp#story'
-  get '/temp/community', to: 'temp#community'
-  get '/temp/communities', to: 'temp#communities'
 
 end

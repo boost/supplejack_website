@@ -24,16 +24,6 @@ $alternateFont: 'Rokkitt', 'ArcherPro';
 	display: none;
 }
 
-.block-image-wrapper {
-	max-height: 6rem;
-	height: 6rem;
-	overflow: hidden;
-	img{
-		max-width: 100%;
-	}
-}
-
-
 cite {
 	font-family: $alternateFont;
 	font-style: normal;
@@ -56,7 +46,6 @@ cite {
 	font-family: $mainFont;	
 
 	a {
-		color: $accent;
 		text-decoration: none;
 		border-bottom: 1px dotted $accent;
 	}
@@ -69,6 +58,7 @@ cite {
 		font-weight: 800;
 		text-align: center;
 		font-size: 2rem;
+		clear: left;
 	}
 
 	h2 {
@@ -76,6 +66,7 @@ cite {
 		text-align: center;
 		font-size: 1.6rem;
 		padding: 2rem 0;
+		clear: left;
 	}
 
 	h3 {
@@ -83,24 +74,11 @@ cite {
 		text-align: center;
 		font-size: 1.5rem;
 		text-transform: uppercase;
+		clear: left;
 	}
 
-	section {
-		margin: 1rem 0;
-		aside.edit-tools {
-			display: block;
-			color: $toolGray;
-			font-family: 'Rokkitt', 'ArcherPro';
-			text-align: left;
-			opacity: 0;
-		}
-	}
-
-	section:hover {
-		
-		aside.edit-tools {
-			opacity: 1.0;
-		}
+	.story-header {
+		margin: 4rem 0;
 	}
 
 	.table-of-contents {
@@ -116,52 +94,21 @@ cite {
 		}
 	}
 
-	.image-panel {
+	.freeform, .set-items {
 		img {
+			float: left;
+			margin: 1%;
+			max-width: 31%;
+		}
+		img.full-width {
+			float: none;
 			width: 100%;
 			max-width: 100%;
-			border: 1px solid $toolGray;
+			height: auto;
+			margin: 1% 2% 1% 1%;
 		}
-		&.full-width {
-			.image-pad {
-				max-width: 100%;
-				max-height: 20rem;
-				overflow: hidden;
-				border-top: 1px solid $toolGray;
-				border-bottom: 1px solid $toolGray;
-			}
-			width: 100%;
-			margin: 3rem 0;
-			img {
-				display: inline-block;
-				margin-top: -10rem;
-				border: 0px;
-			}
-			cite {
-				width: 100%;
-				display: block;
-				text-align: center;
-				margin: 0.5rem 0 1rem;
-				h6 {
-					display: inline-block;
-					margin: 0 1rem 0 0;
-				}
-			}
-		}
-	}
-
-	.image-gallery {
-		.gallery-item {
-			margin: 0 0 1rem 0;
-			img {
-				border: 1px solid $toolGray;
-			}
-		}
-	}
-
-	.narrative-panel {
-		aside.edit-tools {
-			margin-top: 2rem;
+		p {
+			clear: left;
 		}
 	}
 
@@ -307,4 +254,10 @@ cite {
 		}
 	}
 
+}
+
+/* ContentTools overrides */
+
+.ct-widget.ct-ignition {
+	top: 4rem !important;
 }
