@@ -18,6 +18,7 @@
         %li= link_to 'Home', root_url
         %li= link_to 'Contact', '/contact'
         %li= link_to 'About', '/about'
+        %li= link_to 'Terms of Use', '/terms'
         - unless current_page? root_url
           %li.has-form
             .row.collapse
@@ -27,15 +28,14 @@
                   = text_field_tag :text, @search.text, class: 'search-input', placeholder: t('records.enter_search')
                 .large-4.small-3.columns
                   = submit_tag "Search", class: "search-button"
-                
+
       %ul.right
         - if user_signed_in?
           %li.has-dropdown
             %a= current_user.email.split('@').first
             %ul.dropdown
               %li= link_to 'Edit profile', edit_user_registration_path
-              %li= link_to "Logout", destroy_user_session_path, method: :delete      
-        - else 
+              %li= link_to "Logout", destroy_user_session_path, method: :delete
+        - else
           %li= link_to "Sign up", new_user_registration_path
           %li= link_to "Login", new_user_session_path
-
